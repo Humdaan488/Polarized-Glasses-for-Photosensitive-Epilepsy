@@ -14,7 +14,7 @@ Designed polarized glasses using servo controller, polarizing filters, Arduino, 
    
    In order for the servo motor controller or polarizing filters to have the desired functional impact in this design solution, light sensors are a necessary component. Once the light sensor detects flashing light of specific intensity that could cause harm to the user, it converts light energy into an electrical signal that can be perceived by other devices. This electrical signal triggers the solution’s response by causing the servo motor controller to rotate the polarizing filter and block the flashing lights. Without the light sensor, there would be no way to detect flashing flights or trigger a response to help users.
 
--------------------------------- DEMO VIDEO ------------------------
+---------------------------------- DEMO VIDEO ---------------------------------------
 
 A demo video can be found in the project files. The video demonstrates polarizing filters on the glasses in action based on varying frequencies of flashing light being detected.
 
