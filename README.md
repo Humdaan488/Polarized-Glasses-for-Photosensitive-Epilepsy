@@ -16,5 +16,5 @@ Designed polarized glasses using servo controller, polarizing filters, Arduino, 
 
 ---------------------------------- DEMO VIDEO ---------------------------------------
 
-A demo video can be found in the project files. The video demonstrates polarizing filters on the glasses in action based on varying frequencies of flashing light being detected.
+A demo video can be found in the project files. The video demonstrates the polarizing filters on the glasses in action based on varying frequencies of flashing light being detected.
 
