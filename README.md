@@ -4,7 +4,7 @@ Designed polarized glasses using servo controller, polarizing filters, Arduino, 
 
 ---------------------------------- DESCRIPTION of the DESIGN ---------------------------------------
 
-  Photosensitive epilepsy is a neurological condition which affects millions of people globally with one of the main symptoms being sensitivity to flashing lights. The frequency or speed of the flashing lights can provoke various health conditions such as epilepsy, flickering vertigo,vestibular migraines, meniere’s disease, and much more.
+  Photosensitive epilepsy is a neurological condition which affects millions of people globally with one of the main symptoms being sensitivity to flashing lights. The frequency or speed of the flashing lights can provoke various health conditions such as seizures, flickering vertigo,vestibular migraines, meniere’s disease, and much more.
 
   The design solution created are glasses that contain two layers of polarizing filters. In the initial state both filters will be parallel to one another, if the light sensor encounters a flashing light between 3 Hz - 50 Hz the secondary layer of the polarizing filter will rotate to block light. The amount of light that is blocked is dependent on what range of that 3-50 Hz spectrum the frequency of incoming flashing light falls on.The angle at which the second layer will travel will be between 0° to 90° degrees, where 90° will block out all incoming light.  
 
