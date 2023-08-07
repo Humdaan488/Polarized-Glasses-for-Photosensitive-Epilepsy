@@ -5,46 +5,50 @@
 #define SAMPLING_FREQUENCY 512 
 
 arduinoFFT FFT = arduinoFFT();
-Servo myservo;  // create servo object to control a servo
+// create servo object to control a servo
+Servo myservo; 
 
 int pos = 0;    
 int servoPin = 3;
  
 unsigned int samplingPeriod;
 unsigned long microSeconds;
- 
-double vReal[SAMPLES]; //create vector of size SAMPLES to hold real values
-double vImag[SAMPLES]; //create vector of size SAMPLES to hold imaginary values
+
+// creating vector of size Samples to hold real & imaginary values
+double vReal[SAMPLES]; 
+double vImag[SAMPLES];
  
 void setup() 
 {
     Serial.begin(115200); 
-    samplingPeriod = round(1000000*(1.0/SAMPLING_FREQUENCY)); //Period in microseconds 
+    // Find Period in microseconds
+    samplingPeriod = round(1000000*(1.0/SAMPLING_FREQUENCY));  
     myservo.attach(servoPin);
 
 }
  
 void loop() 
 {  
-    int frequency = findFrequency(0); //Find frequency using the signal on analog pin 0 on the Arduino
+    int frequency = findFrequency(0); 
     Serial.println(frequency);
-    int rotationAmountx = rotationAmount(frequency); //Figure out by how much to rotate the motor
-    rotateMotorFunction(rotationAmountx, 2); //Rotate the motor
+    // Figuring out rotation amount of motor based on detected frequency from analog pin 0 on Arduino
+    int rotationAmountx = rotationAmount(frequency); 
+    rotateMotorFunction(rotationAmountx, 2);
 }
-
+//carries out rotation of motor from 0 degrees to desired 'endPos' degrees
 void rotateMotorFunction (int endPos,int delayNum) {
-  for (int startPos = 0; startPos <= endPos; startPos += 1) { // goes from 0 degrees to endPos degrees in steps of 1 degree
-    myservo.write(startPos);              // tell servo to go to position in variable 'startpos'
-    delay(delayNum);                      // waits delayNum for the servo to reach the position
+  for (int startPos = 0; startPos <= endPos; startPos += 1) { 
+    myservo.write(startPos);              
+    delay(delayNum);                      
   }
   
   int currentFrequency = findFrequency(0);
+  // While the light frequency is within 5Hz of the initial frequency, do not rotate the motor back
   while(endPos/3.6 + 5 > currentFrequency && endPos/3.6 - 5 < currentFrequency){
       currentFrequency = findFrequency(0);
-      //While the light frequency is within 5Hz of the initial frequency, do not rotate the motor back
     }
-  
-   for (int goingBack = endPos; goingBack >= 0; goingBack -= 1) { // goes from endPos degrees to 0 degrees
+   //for loop to rotate back from 'endPos' to 0 degrees
+   for (int goingBack = endPos; goingBack >= 0; goingBack -= 1) {
     myservo.write(goingBack);              
     delay(delayNum);                      
   }
@@ -54,10 +58,11 @@ double findFrequency(int phototransistorAnalogPinNumber) {
   /*Sample SAMPLES times*/
     for(int i=0; i<SAMPLES; i++)
     {
-        microSeconds = micros();    //Returns the number of microseconds since the Arduino board began running the current script
+        //Returns the number of microseconds since the Arduino board began running the current script
+        microSeconds = micros(); 
      
         vReal[i] = analogRead(phototransistorAnalogPinNumber); 
-        vImag[i] = 0; //Makes imaginary term 0 always
+        vImag[i] = 0; 
 
         /*remaining wait time between samples if necessary*/
         while(micros() < (microSeconds + samplingPeriod))
@@ -69,7 +74,7 @@ double findFrequency(int phototransistorAnalogPinNumber) {
     float mean = findAverage (vReal);
     if (mean < 50) return 0;
 
-    //Fourier transform application
+    //Fourier transform application using 'ArduinoFFT' library
     FFT.Windowing(vReal, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
     FFT.Compute(vReal, vImag, SAMPLES, FFT_FORWARD);
     FFT.ComplexToMagnitude(vReal, vImag, SAMPLES);
@@ -86,7 +91,6 @@ float findAverage (double * array)
         sum += array [i] ;
       return  ((float) sum) / 128 ;  
     }
-
 
 int rotationAmount(int rawFrequency) {
   int frequency = round(rawFrequency);
