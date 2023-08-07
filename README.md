@@ -18,3 +18,7 @@ Designed polarized glasses using servo controller, polarizing filters, Arduino, 
 
 A demo video can be found in the project files. The video demonstrates the polarizing filters on the glasses in action based on varying frequencies of flashing light being detected.
 
+
+
+https://github.com/Humdaan488/Polarized-Glasses-for-Photosensitive-Epilepsy/assets/77771083/05a19026-2a5c-4d5b-8232-09a47cd66d5b
+
