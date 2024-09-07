@@ -1,5 +1,5 @@
 # Polarized-Glasses-for-Photosensitive-Epilepsy
-Designed functional prototype of polarized glasses using servo controller, polarizing filters, Arduino UNO, gears, and phototransistor to detect and block flashing lights between a certain frequency range to protect against detrimental health effects experienced by users with photosensitive epilepsy when exposed to flickering lights.
+Designed functional prototype of polarized glasses using servo controller, polarizing filters, Arduino UNO, gears, and phototransistor to detect and block flashing lights between the 3-50 Hz frequency range to protect against detrimental health effects experienced by users with photosensitive epilepsy when exposed to flickering lights.
 
 ## Demo Video
 
